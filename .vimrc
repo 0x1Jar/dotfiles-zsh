@@ -1,3 +1,5 @@
+set nocompatible
+
 " Vundle
 filetype off
 
@@ -80,9 +82,9 @@ if &t_Co == 256
 endif
 
 " Switch tabs
-map 8 <Esc>:tabe 
-map 9 gT
-map 0 gt
+nnoremap 8 <Esc>:tabe
+nnoremap 9 gT
+nnoremap 0 gt
 
 " Direction keys for wrapped lines
 nnoremap <silent> k gk
@@ -124,6 +126,3 @@ if $VIMENV == 'prev'
 endif
 
 set noesckeys
-
-set nocompatible
-
