@@ -1,1 +1,88 @@
-TomNomNom dotfiles
+# TomNomNom Dotfiles (Zsh Enhanced)
+
+Ini adalah koleksi dotfiles pribadi, yang telah disesuaikan untuk digunakan dengan Zsh.
+
+## Prasyarat
+
+Sebelum Anda mulai, pastikan Anda telah menginstal perangkat lunak berikut:
+
+*   **Git**: Untuk mengkloning repositori ini dan untuk manajemen plugin Vim (Vundle).
+*   **Zsh**: Shell yang akan dikonfigurasi.
+*   **Vim**: Editor teks yang dikonfigurasi oleh `.vimrc` dalam dotfiles ini.
+*   **curl** atau **wget**: Diperlukan jika Anda berencana menjalankan skrip `go-setup.sh`.
+
+**Instalasi Prasyarat:**
+
+*   **Di macOS (menggunakan [Homebrew](https://brew.sh/)):**
+    ```bash
+    brew install git zsh vim curl wget
+    ```
+
+*   **Di Linux (contoh untuk distribusi berbasis Debian/Ubuntu):**
+    ```bash
+    sudo apt update
+    sudo apt install git zsh vim curl wget -y
+    ```
+    Untuk distribusi Linux lainnya (misalnya, Fedora, Arch Linux), gunakan manajer paket yang sesuai (misalnya, `dnf`, `pacman`).
+
+## Instalasi Dotfiles
+
+1.  **Kloning Repositori:**
+    Kloning repositori ini ke direktori pilihan Anda, misalnya `~/.dotfiles`:
+    ```bash
+    git clone https://github.com/USERNAME/REPOSITORY.git ~/.dotfiles
+    ```
+    *(Ganti `https://github.com/USERNAME/REPOSITORY.git` dengan URL repositori dotfiles Anda yang sebenarnya jika ini adalah fork atau repositori Anda sendiri).* Jika Anda berada di direktori yang sudah berisi dotfiles ini, Anda dapat melewati langkah ini.
+
+2.  **Pindah ke Direktori Dotfiles:**
+    ```bash
+    cd ~/.dotfiles
+    ```
+    *(Atau direktori tempat Anda mengkloning/menyimpan dotfiles ini).*
+
+3.  **Jalankan Skrip Setup:**
+    Skrip `setup.sh` akan membuat symlink yang diperlukan untuk file konfigurasi (`.zshrc`, `.vimrc`, dll.) ke direktori home Anda dan menginstal Vundle (manajer plugin Vim).
+    ```bash
+    ./setup.sh
+    ```
+    *Catatan: Jika Anda mendapatkan error izin, jalankan `chmod +x setup.sh` terlebih dahulu.*
+
+4.  **Verifikasi Instalasi Plugin Vim:**
+    Skrip `setup.sh` mencoba menginstal plugin Vim secara otomatis. Untuk memverifikasi atau jika ada masalah, buka Vim:
+    ```bash
+    vim
+    ```
+    Kemudian jalankan perintah berikut di dalam Vim:
+    ```vim
+    :PluginInstall
+    ```
+    Tutup Vim setelah instalasi selesai (`:qa`).
+
+## Instalasi Go (Opsional)
+
+Jika Anda memerlukan lingkungan pengembangan Go, Anda dapat menggunakan skrip `go-setup.sh`. Skrip ini akan mengunduh dan menginstal versi Go yang ditentukan di dalamnya.
+
+```bash
+./go-setup.sh
+```
+*Catatan: Skrip ini menggunakan `sudo` untuk memindahkan file Go ke `/usr/local/go`, jadi Anda mungkin akan dimintai kata sandi.*
+Pastikan untuk memeriksa dan mungkin memperbarui versi Go di dalam skrip `go-setup.sh` ke versi terbaru yang Anda inginkan.
+
+## Mengatur Zsh sebagai Shell Default
+
+Jika Zsh belum menjadi shell default Anda, Anda dapat mengubahnya dengan perintah berikut:
+```bash
+chsh -s $(which zsh)
+```
+Anda perlu logout dan login kembali, atau memulai ulang sistem Anda agar perubahan ini berlaku sepenuhnya.
+
+## Memulai Sesi Zsh Baru
+
+Tutup terminal Anda saat ini dan buka yang baru untuk mulai menggunakan konfigurasi Zsh yang baru. Anda juga dapat mencoba menjalankan `source ~/.zshrc` di sesi Zsh yang ada, tetapi memulai sesi baru adalah cara terbaik untuk memastikan semuanya dimuat dengan benar.
+
+## Konfigurasi Lokal Tambahan
+
+Anda dapat menempatkan konfigurasi pribadi tambahan yang tidak ingin Anda lacak di Git dalam file `~/.localrc`. File ini akan di-source secara otomatis oleh `.zshrc` jika ada.
+
+---
+Selamat menikmati konfigurasi dotfiles Anda!
