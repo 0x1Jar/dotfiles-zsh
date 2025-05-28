@@ -3,7 +3,7 @@ set nocompatible
 " Vundle
 filetype off
 
-let g:vundle_default_git_proto = 'git'
+let g:vundle_default_git_proto = 'https'
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -23,6 +23,10 @@ filetype plugin on
 syntax on
 
 set encoding=utf-8
+
+" Ensure Vim uses Zsh for external commands
+" User might need to adjust this path if Zsh is installed elsewhere (e.g., /usr/local/bin/zsh for Homebrew)
+set shell=/bin/zsh
 
 " Airline config
 let g:airline_powerline_fonts = 1
