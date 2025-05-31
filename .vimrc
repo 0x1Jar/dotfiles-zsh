@@ -26,7 +26,11 @@ set encoding=utf-8
 
 " Ensure Vim uses Zsh for external commands
 " User might need to adjust this path if Zsh is installed elsewhere (e.g., /usr/local/bin/zsh for Homebrew)
-set shell=/bin/zsh
+if executable('/bin/zsh')
+    set shell=/bin/zsh
+elseif executable('/usr/local/bin/zsh')
+    set shell=/usr/local/bin/zsh
+endif
 
 " Airline config
 let g:airline_powerline_fonts = 1
@@ -130,3 +134,14 @@ if $VIMENV == 'prev'
 endif
 
 set noesckeys
+
+" Map Home and End keys explicitly because Mac might need fn key
+noremap <Home> ^
+noremap <End> $
+inoremap <Home> <C-O>^
+inoremap <End> <C-O>$
+
+" Map Option key as Meta key (might need terminal app to set "Use Option as Meta key")
+if has("gui_macvim")
+    set macmeta
+endif
