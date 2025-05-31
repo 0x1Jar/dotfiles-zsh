@@ -123,7 +123,14 @@ bindkey '^N' up-directory-and-execute
 # ---------------------------------
 # End of .inputrc equivalent settings
 
-# Local settings go last
-if [ -f ~/.localrc ]; then
-  source ~/.localrc
+# Pastikan source .zshrc hanya dijalankan di shell zsh
+if [ -n "$ZSH_VERSION" ]; then
+    # Zsh-specific initialization (jika ada)
+    # Local settings go last
+    if [ -f ~/.localrc ]; then
+      source ~/.localrc
+    fi
+else
+    echo "Jangan source .zshrc dari shell selain zsh!"
+    return 1
 fi
