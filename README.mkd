@@ -1,88 +1,87 @@
 # TomNomNom Dotfiles (Zsh Enhanced)
 
-Ini adalah koleksi dotfiles pribadi, yang telah disesuaikan untuk digunakan dengan Zsh.
+This is a collection of personal dotfiles, which have been customized for use with Zsh.
 
-## Prasyarat
+## Prerequisites
 
-Sebelum Anda mulai, pastikan Anda telah menginstal perangkat lunak berikut:
+Before you start, make sure you have installed the following software:
 
-*   **Git**: Untuk mengkloning repositori ini dan untuk manajemen plugin Vim (Vundle).
-*   **Zsh**: Shell yang akan dikonfigurasi.
-*   **Vim**: Editor teks yang dikonfigurasi oleh `.vimrc` dalam dotfiles ini.
-*   **curl** atau **wget**: Diperlukan jika Anda berencana menjalankan skrip `go-setup.sh`.
+*   **Git**: To clone this repository and for Vim plugin management (Vundle).
+*   **Zsh**: The shell that will be configured.
+*   **Vim**: The text editor configured by `.vimrc` in these dotfiles.
+*   **curl** or **wget**: Required if you plan to run the `go-setup.sh` script.
 
-**Instalasi Prasyarat:**
+**Prerequisites Installation:**
 
-*   **Di macOS (menggunakan [Homebrew](https://brew.sh/)):**
+*   **On macOS (using [Homebrew](https://brew.sh/)):**
     ```bash
     brew install git zsh vim curl wget
     ```
 
-*   **Di Linux (contoh untuk distribusi berbasis Debian/Ubuntu):**
+*   **On Linux (example for Debian/Ubuntu based distributions):**
     ```bash
     sudo apt update
     sudo apt install git zsh vim curl wget -y
     ```
-    Untuk distribusi Linux lainnya (misalnya, Fedora, Arch Linux), gunakan manajer paket yang sesuai (misalnya, `dnf`, `pacman`).
+    For other Linux distributions (e.g., Fedoria, Arch Linux), use the appropriate package manager (e.g., `dnf`, `pacman`).
 
-## Instalasi Dotfiles
+## Dotfiles Installation
 
-1.  **Kloning Repositori:**
-    Kloning repositori ini ke direktori pilihan Anda, misalnya `~/.dotfiles`:
+1.  **Clone the Repository:**
+    Clone this repository to a directory of your choice, for example `~/.dotfiles`:
     ```bash
-    git clone https://github.com/USERNAME/REPOSITORY.git ~/.dotfiles
+    git clone https://github.com/tomnomnom/dotfiles.git ~/.dotfiles
     ```
-    *(Ganti `https://github.com/USERNAME/REPOSITORY.git` dengan URL repositori dotfiles Anda yang sebenarnya jika ini adalah fork atau repositori Anda sendiri).* Jika Anda berada di direktori yang sudah berisi dotfiles ini, Anda dapat melewati langkah ini.
+    If you are already in a directory that contains these dotfiles, you can skip this step.
 
-2.  **Pindah ke Direktori Dotfiles:**
+2.  **Move to the Dotfiles Directory:**
     ```bash
     cd ~/.dotfiles
     ```
-    *(Atau direktori tempat Anda mengkloning/menyimpan dotfiles ini).*
+    (Or the directory where you cloned/stored these dotfiles).
 
-3.  **Jalankan Skrip Setup:**
-    Skrip `setup.sh` akan membuat symlink yang diperlukan untuk file konfigurasi (`.zshrc`, `.vimrc`, dll.) ke direktori home Anda dan menginstal Vundle (manajer plugin Vim).
+3.  **Run the Setup Script:**
+    The `setup.sh` script will create the necessary symlinks for the configuration files (`.zshrc`, `.vimrc`, etc.) to your home directory and will install Vundle (a Vim plugin manager).
     ```bash
     ./setup.sh
     ```
-    *Catatan: Jika Anda mendapatkan error izin, jalankan `chmod +x setup.sh` terlebih dahulu.*
+    *Note: If you get a permission error, run `chmod +x setup.sh` first.*
 
-4.  **Verifikasi Instalasi Plugin Vim:**
-    Skrip `setup.sh` mencoba menginstal plugin Vim secara otomatis. Untuk memverifikasi atau jika ada masalah, buka Vim:
+4.  **Verify Vim Plugin Installation:**
+    The `setup.sh` script attempts to install Vim plugins automatically. To verify or if there are issues, open Vim:
     ```bash
     vim
     ```
-    Kemudian jalankan perintah berikut di dalam Vim:
+    Then run the following command within Vim:
     ```vim
     :PluginInstall
     ```
-    Tutup Vim setelah instalasi selesai (`:qa`).
+    Close Vim once the installation is complete (`:qa`).
 
-## Instalasi Go (Opsional)
+## Go Installation (Optional)
 
-Jika Anda memerlukan lingkungan pengembangan Go, Anda dapat menggunakan skrip `go-setup.sh`. Skrip ini akan mengunduh dan menginstal versi Go yang ditentukan di dalamnya.
+If you need a Go development environment, you can use the `go-setup.sh` script. This script will download and install the Go version specified in it.
 
 ```bash
 ./go-setup.sh
 ```
-*Catatan: Skrip ini menggunakan `sudo` untuk memindahkan file Go ke `/usr/local/go`, jadi Anda mungkin akan dimintai kata sandi.*
-Pastikan untuk memeriksa dan mungkin memperbarui versi Go di dalam skrip `go-setup.sh` ke versi terbaru yang Anda inginkan.
+*Note: This script uses `sudo` to move the Go files to `/usr/local/go`, so you might be prompted for a password.*
+Make sure to check and possibly update the Go version in the `go-setup.sh` script to the latest version you want.
 
-## Mengatur Zsh sebagai Shell Default
+## Setting Zsh as the Default Shell
 
-Jika Zsh belum menjadi shell default Anda, Anda dapat mengubahnya dengan perintah berikut:
+If Zsh is not already your default shell, you can change it with the following command:
 ```bash
 chsh -s $(which zsh)
 ```
-Anda perlu logout dan login kembali, atau memulai ulang sistem Anda agar perubahan ini berlaku sepenuhnya.
+You need to log out and log back in, or restart your system for this change to take full effect.
 
-## Memulai Sesi Zsh Baru
+## Starting a New Zsh Session
 
-Tutup terminal Anda saat ini dan buka yang baru untuk mulai menggunakan konfigurasi Zsh yang baru. Anda juga dapat mencoba menjalankan `source ~/.zshrc` di sesi Zsh yang ada, tetapi memulai sesi baru adalah cara terbaik untuk memastikan semuanya dimuat dengan benar.
+Close your current terminal and open a new one to start using your new Zsh configuration. You can also try running `source ~/.zshrc` in the existing Zsh session, but starting a new session is the best way to make sure everything loads correctly.
 
-## Konfigurasi Lokal Tambahan
+## Additional Local Configuration
 
-Anda dapat menempatkan konfigurasi pribadi tambahan yang tidak ingin Anda lacak di Git dalam file `~/.localrc`. File ini akan di-source secara otomatis oleh `.zshrc` jika ada.
+You can place additional personal configuration that you don't want to track in Git in the `~/.localrc` file. This file will be sourced automatically by `.zshrc` if it exists.
 
----
-Selamat menikmati konfigurasi dotfiles Anda!
+Enjoy your dotfiles configuration!
