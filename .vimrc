@@ -92,6 +92,8 @@ endif
 nnoremap 8 <Esc>:tabe
 nnoremap 9 gT
 nnoremap 0 gt
+" Custom: Close current tab with 7
+nnoremap 7 :tabclose<CR>
 
 " Direction keys for wrapped lines
 nnoremap <silent> k gk
