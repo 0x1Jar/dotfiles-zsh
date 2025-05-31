@@ -6,8 +6,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'TomNomNom/xoria256.vim'
 Plug 'fatih/vim-go'
+" HTML, CSS, JavaScript, JSON, and formatting plugins
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'elzr/vim-json'
+Plug 'Chiel92/vim-autoformat'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 call plug#end()
 
