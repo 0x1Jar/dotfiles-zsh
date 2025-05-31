@@ -1,27 +1,19 @@
 set nocompatible
 
-" Vundle
-filetype off
+" Use vim-plug instead of Vundle
+call plug#begin('~/.vim/plugged')
 
-let g:vundle_default_git_proto = 'https'
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'TomNomNom/xoria256.vim'
+Plug 'fatih/vim-go'
 
-" Bundles
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'TomNomNom/xoria256.vim'
-Plugin 'fatih/vim-go'
+call plug#end()
 
-call vundle#end()
+filetype plugin indent on
 
-filetype plugin on 
-
-" Highlighting
 syntax on
-
 set encoding=utf-8
 
 " Ensure Vim uses Zsh for external commands
