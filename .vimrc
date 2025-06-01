@@ -24,17 +24,16 @@ syntax on
 set encoding=utf-8
 
 " Ensure Vim uses Zsh for external commands
-" User might need to adjust this path if Zsh is installed elsewhere (e.g., /usr/local/bin/zsh for Homebrew)
 if executable('/bin/zsh')
     set shell=/bin/zsh
 elseif executable('/usr/local/bin/zsh')
     set shell=/usr/local/bin/zsh
 endif
-" Use shell options to ensure :!sh, :!bash, and :!zsh run zsh
+
+" Gunakan shell zsh untuk semua perintah eksternal
 set shellcmdflag=-c
-" Alias :!sh and :!bash to zsh
-command! -nargs=* Sh execute '!zsh <args>'
-command! -nargs=* Bash execute '!zsh <args>'
+
+" Untuk shell interaktif, gunakan :term zsh atau <leader>z
 " Now, inside vim, :!sh or :!bash will run a temporary zsh
 " and return to vim after completion
 " Example: :Sh ls -al
