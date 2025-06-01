@@ -161,4 +161,7 @@ endif
 " Keybinding: <leader>z untuk buka terminal zsh di dalam Vim
 nnoremap <leader>z :term zsh<CR>
 
+" Keybinding: <leader>p untuk format dengan Prettier
+nnoremap <leader>p :Prettier<CR>
+
 " Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z
