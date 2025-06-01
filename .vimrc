@@ -15,6 +15,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'elzr/vim-json'
 Plug 'Chiel92/vim-autoformat'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'maksimr/vim-jsbeautify'
 
 call plug#end()
 
