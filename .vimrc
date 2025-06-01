@@ -24,33 +24,33 @@ filetype plugin indent on
 syntax on
 set encoding=utf-8
 
-" Ensure Vim uses Zsh for external commands
+" Ensure Vim uses Zsh for external commands "
 if executable('/bin/zsh')
     set shell=/bin/zsh
 elseif executable('/usr/local/bin/zsh')
     set shell=/usr/local/bin/zsh
 endif
 
-" Gunakan shell zsh untuk semua perintah eksternal
+" Gunakan shell zsh untuk semua perintah eksternal "
 set shellcmdflag=-c
 
-" Untuk shell interaktif, gunakan :term zsh atau <leader>z
-" Now, inside vim, :!sh or :!bash will run a temporary zsh
-" and return to vim after completion
-" Example: :Sh ls -al
-" or :Bash echo hello
-" For :!sh it can still be used, but it will run the set shell (zsh)
-" and not the user's default shell
+" Untuk shell interaktif, gunakan :term zsh atau <leader>z "
+" Now, inside vim, :!sh or :!bash will run a temporary zsh "
+" and return to vim after completion "
+" Example: :Sh ls -al "
+" or :Bash echo hello "
+" For :!sh it can still be used, but it will run the set shell (zsh) "
+" and not the user's default shell "
 
-" Airline config
+" Airline config "
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
 
-" History
+" History "
 set history=50
 
-" Display
+" Display "
 set ls=2
 set showmode
 set showcmd
@@ -59,38 +59,38 @@ set ruler
 set title
 set nu
 
-" Line wrapping
+" Line wrapping "
 set nowrap
 set linebreak
 set showbreak=▹
 
-" Auto indent what you can
+" Auto indent what you can "
 set autoindent
 
-" Searching
+" Searching "
 set ignorecase
 set smartcase
 set gdefault
 set hlsearch
 set showmatch
 
-" Enable jumping into files in a search buffer
+" Enable jumping into files in a search buffer "
 set hidden 
 
-" Make backspace a bit nicer
+" Make backspace a bit nicer"
 set backspace=eol,start,indent
 
-" Indentation
+" Indentation "
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set shiftround
 set expandtab
 
-" Disable mouse
+" Disable mouse "
 set mouse=
 
-" Colorscheme
+" Colorscheme "
 if &t_Co == 256
     try
         color xoria256
@@ -99,14 +99,14 @@ if &t_Co == 256
     endtry
 endif
 
-" Switch tabs
+" Switch tabs "
 nnoremap 8 <Esc>:tabe
 nnoremap 9 gT
 nnoremap 0 gt
-" Custom: Close current tab with 7
+" Custom: Close current tab with 7"
 nnoremap 7 :tabclose<CR>
 
-" Direction keys for wrapped lines
+" Direction keys for wrapped lines "
 nnoremap <silent> k gk
 nnoremap <silent> j gj
 nnoremap <silent> <Up> gk
@@ -114,27 +114,27 @@ nnoremap <silent> <Down> gj
 inoremap <silent> <Up> <Esc>gka
 inoremap <silent> <Down> <Esc>gja
 
-" Bash / emacs keys for command line
+" Bash / emacs keys for command line "
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-" Base64 decode word under cursor
+" Base64 decode word under cursor "
 nmap <Leader>b :!echo <C-R><C-W> \| base64 -d<CR>
 
-" grep recursively for word under cursor
+" grep recursively for word under cursor "
 nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 
-" sort the buffer removing duplicates
+" sort the buffer removing duplicates "
 nmap <Leader>s :%!sort -u --version-sort<CR>
 
-" Visual prompt for command completion
+" Visual prompt for command completion"
 set wildmenu
 
-" I type these wrong often
+" I type these wrong often "
 command! W w
 command! -bang Qall qall
 
-" folding
+" folding"
 set nofoldenable
 
 " a mode for quickly looking at lots of files
@@ -147,7 +147,7 @@ endif
 
 set noesckeys
 
-" Map Home and End keys explicitly because Mac might need fn key
+" Map Home and End keys explicitly because Mac might need fn key "
 noremap <Home> ^
 noremap <End> $
 inoremap <Home> <C-O>^
@@ -158,10 +158,10 @@ if has("gui_macvim")
     set macmeta
 endif
 
-" Keybinding: <leader>z untuk buka terminal zsh di dalam Vim
+" Keybinding: <leader>z untuk buka terminal zsh di dalam Vim "
 nnoremap <leader>z :term zsh<CR>
 
-" Keybinding: <leader>p untuk format dengan Prettier
+" Keybinding: <leader>p untuk format dengan Prettier "
 nnoremap <leader>p :Prettier<CR>
 
 " Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z
