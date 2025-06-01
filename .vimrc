@@ -157,3 +157,8 @@ inoremap <End> <C-O>$
 if has("gui_macvim")
     set macmeta
 endif
+
+" Keybinding: <leader>z untuk buka terminal zsh di dalam Vim
+nnoremap <leader>z :term zsh<CR>
+
+" Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z
