@@ -95,7 +95,7 @@ if &t_Co == 256
     try
         color xoria256
     catch /^Vim\%((\a\+)\)\=:E185/
-        " Oh well
+        " Oh well "
     endtry
 endif
 
@@ -103,7 +103,7 @@ endif
 nnoremap 8 <Esc>:tabe
 nnoremap 9 gT
 nnoremap 0 gt
-" Custom: Close current tab with 7"
+" Custom: Close current tab with 7 "
 nnoremap 7 :tabclose<CR>
 
 " Direction keys for wrapped lines "
@@ -127,17 +127,17 @@ nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 " sort the buffer removing duplicates "
 nmap <Leader>s :%!sort -u --version-sort<CR>
 
-" Visual prompt for command completion"
-set wildmenu
+" Visual prompt for command completion "
+set wildmenu 
 
 " I type these wrong often "
 command! W w
 command! -bang Qall qall
 
-" folding"
+" folding "
 set nofoldenable
 
-" a mode for quickly looking at lots of files
+" a mode for quickly looking at lots of files "
 if $VIMENV == 'prev'
   noremap <Space> :n<CR>
   noremap <Backspace> :N<CR>
@@ -153,7 +153,7 @@ noremap <End> $
 inoremap <Home> <C-O>^
 inoremap <End> <C-O>$
 
-" Map Option key as Meta key (might need terminal app to set "Use Option as Meta key")
+" Map Option key as Meta key (might need terminal app to set 'Use Option as Meta key') "
 if has("gui_macvim")
     set macmeta
 endif
