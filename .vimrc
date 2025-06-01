@@ -30,6 +30,17 @@ if executable('/bin/zsh')
 elseif executable('/usr/local/bin/zsh')
     set shell=/usr/local/bin/zsh
 endif
+" Use shell options to ensure :!sh, :!bash, and :!zsh run zsh
+set shellcmdflag=-c
+" Alias :!sh and :!bash to zsh
+command! -nargs=* Sh execute '!zsh <args>'
+command! -nargs=* Bash execute '!zsh <args>'
+" Now, inside vim, :!sh or :!bash will run a temporary zsh
+" and return to vim after completion
+" Example: :Sh ls -al
+" or :Bash echo hello
+" For :!sh it can still be used, but it will run the set shell (zsh)
+" and not the user's default shell
 
 " Airline config
 let g:airline_powerline_fonts = 1
