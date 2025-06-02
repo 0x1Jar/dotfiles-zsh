@@ -30,7 +30,7 @@ Before you start, make sure you have installed the following software:
 1.  **Clone the Repository:**
     Clone this repository to a directory of your choice, for example `~/.dotfiles`:
     ```bash
-    [git clone https://github.com/tomnomnom/dotfiles.git ~/.dotfiles](https://github.com/0x1Jar/dotfiles-zsh.git)
+    https://github.com/0x1Jar/dotfiles-zsh.git ~/.dotfiles
     ```
     If you are already in a directory that contains these dotfiles, you can skip this step.
 
