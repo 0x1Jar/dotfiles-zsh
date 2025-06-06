@@ -165,4 +165,9 @@ nnoremap <leader>z :term zsh<CR>
 " Keybinding: <leader>p untuk format dengan Prettier "
 nnoremap <leader>p :Prettier<CR>
 
-" Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z
+" Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z"
+
+inoremap <Up> <Up>
+inoremap <Down> <Down>
+inoremap <Left> <Left>
+inoremap <Right> <Right>
