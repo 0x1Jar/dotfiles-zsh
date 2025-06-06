@@ -1,0 +1,126 @@
+set nocompatible
+
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'fatih/vim-go'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'elzr/vim-json'
+Plug 'Chiel92/vim-autoformat'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'maksimr/vim-jsbeautify'
+Plug 'ryanoasis/vim-devicons'
+call plug#end()
+
+filetype plugin indent on
+syntax on
+set encoding=utf-8
+
+if executable('/bin/zsh')
+    set shell=/bin/zsh
+elseif executable('/usr/local/bin/zsh')
+    set shell=/usr/local/bin/zsh
+endif
+set shellcmdflag=-c
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='powerlineish'
+
+set history=50
+set ls=2
+set showmode
+set showcmd
+set modeline
+set ruler
+set title
+set nu
+set nowrap
+set linebreak
+set showbreak=▹
+set autoindent
+set ignorecase
+set smartcase
+set gdefault
+set hlsearch
+set showmatch
+set hidden
+set backspace=eol,start,indent
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set shiftround
+set expandtab
+set mouse=
+
+if &t_Co == 256
+    try
+        color xoria256
+    catch /^Vim\%((\a\+)\)\=:E185/
+    endtry
+endif
+
+nnoremap 8 <Esc>:tabe<CR>
+nnoremap 9 gT
+nnoremap 0 gt
+nnoremap 7 :tabclose<CR>
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+nnoremap <silent> <Up> gk
+nnoremap <silent> <Down> gj
+
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+nmap <Leader>b :call DecodeBase64Word()<CR>
+
+function! DecodeBase64Word()
+  let l:word = expand('<cword>')
+  if empty(l:word)
+    echo "No word under cursor"
+    return
+  endif
+  let l:cmd = 'printf "%s" ' . shellescape(l:word) . ' | base64 -d 2>/dev/null | cat'
+  let l:result = system(l:cmd)
+  if v:shell_error || empty(l:result)
+    echo "Failed to decode base64 or not valid base64 string"
+    return
+  endif
+  tabnew
+  call setline(1, split(l:result, "\n"))
+endfunction
+
+nmap <Leader>g :tabnew|read !grep -Hnr '<C-R><C-W>' .<CR>
+nmap <Leader>s :%!sort -u --version-sort<CR>
+
+set wildmenu
+
+command! W w
+command! -bang Qall qall
+
+set nofoldenable
+
+if $VIMENV == 'prev'
+  noremap <Space> :n<CR>
+  noremap <Backspace> :N<CR>
+  noremap <C-D> :call delete(expand('%')) | argdelete % | bdelete<CR>
+  set noswapfile
+endif
+
+set noesckeys
+
+noremap <Home> ^
+noremap <End> $
+inoremap <Home> <C-O>^
+inoremap <End> <C-O>$
+
+if has('gui_macvim')
+    set macmeta
+endif
+
+nnoremap <leader>z :term zsh<CR>
+nnoremap <leader>p :Prettier<CR>
