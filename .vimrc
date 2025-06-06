@@ -112,8 +112,12 @@ nnoremap <silent> k gk
 nnoremap <silent> j gj
 nnoremap <silent> <Up> gk
 nnoremap <silent> <Down> gj
-inoremap <silent> <Up> <Esc>gka
-inoremap <silent> <Down> <Esc>gja
+
+" Hapus semua mapping arrow key di insert mode agar arrow key berfungsi normal
+silent! iunmap <Up>
+silent! iunmap <Down>
+silent! iunmap <Left>
+silent! iunmap <Right>
 
 " Bash / emacs keys for command line "
 cnoremap <C-a> <Home>
@@ -166,8 +170,3 @@ nnoremap <leader>z :term zsh<CR>
 nnoremap <leader>p :Prettier<CR>
 
 " Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z"
-
-inoremap <Up> <Up>
-inoremap <Down> <Down>
-inoremap <Left> <Left>
-inoremap <Right> <Right>
