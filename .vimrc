@@ -55,7 +55,7 @@ set tabstop=4
 set softtabstop=4
 set shiftround
 set expandtab
-set mouse=
+set mouse=a
 
 if &t_Co == 256
     try
@@ -111,8 +111,6 @@ if $VIMENV == 'prev'
   noremap <C-D> :call delete(expand('%')) | argdelete % | bdelete<CR>
   set noswapfile
 endif
-
-set noesckeys
 
 noremap <Home> ^
 noremap <End> $
