@@ -1,12 +1,10 @@
 set nocompatible
 
-" Use vim-plug for plugin management
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go'
-" HTML, CSS, JavaScript, JSON, and formatting plugins
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'othree/html5.vim'
@@ -22,7 +20,6 @@ filetype plugin indent on
 syntax on
 set encoding=utf-8
 
-" Ensure Vim uses Zsh for external commands
 if executable('/bin/zsh')
     set shell=/bin/zsh
 elseif executable('/usr/local/bin/zsh')
@@ -30,7 +27,6 @@ elseif executable('/usr/local/bin/zsh')
 endif
 set shellcmdflag=-c
 
-" Airline config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='powerlineish'
@@ -61,44 +57,45 @@ set shiftround
 set expandtab
 set mouse=
 
-" Colorscheme
 if &t_Co == 256
     try
         color xoria256
     catch /^Vim\%((\a\+)\)\=:E185/
-        " Oh well
     endtry
 endif
 
-" Tab navigation
+let mapleader = ","
+
 nnoremap 8 <Esc>:tabe<CR>
 nnoremap 9 gT
 nnoremap 0 gt
 nnoremap 7 :tabclose<CR>
-
-" Direction keys for wrapped lines (normal mode only)
 nnoremap <silent> k gk
 nnoremap <silent> j gj
 nnoremap <silent> <Up> gk
 nnoremap <silent> <Down> gj
 
-" Hapus semua mapping arrow key di insert mode agar arrow key berfungsi normal
-iunmap <Up>
-iunmap <Down>
-iunmap <Left>
-iunmap <Right>
-
-" Bash / emacs keys for command line
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-" Base64 decode word under cursor
-nmap <Leader>b :!echo <C-R><C-W> | base64 -d<CR>
+nmap <Leader>b :call DecodeBase64Word()<CR>
 
-" grep recursively for word under cursor
-nmap <Leader>g :tabnew|read !grep -Hnr '<C-R><C-W>'<CR>
+function! DecodeBase64Word()
+  let l:word = expand('<cword>')
+  if empty(l:word)
+    echo "No word under cursor"
+    return
+  endif
+  let l:cmd = 'printf "%s" ' . shellescape(l:word) . ' | base64 -d 2>/dev/null | cat'
+  let l:result = system(l:cmd)
+  if v:shell_error || empty(l:result)
+    echo "Failed to decode base64 or not valid base64 string"
+    return
+  endif
+  tabnew
+  call setline(1, split(l:result, "\n"))
+endfunction
 
-" sort the buffer removing duplicates
 nmap <Leader>s :%!sort -u --version-sort<CR>
 
 set wildmenu
@@ -129,4 +126,16 @@ endif
 nnoremap <leader>z :term zsh<CR>
 nnoremap <leader>p :Prettier<CR>
 
-" Info: :!sh tidak akan membuka shell interaktif penuh, gunakan :term zsh atau <leader>z
+function! GrepAndRead()
+    let word = expand("<cword>")
+    let command = "grep -Hnr " . shellescape(word) . " ."
+    let result = system(command)
+    if v:shell_error == 0
+        tabnew
+        put =result
+    else
+        echo "grep failed with error: " . result
+    endif
+endfunction
+
+nmap <Leader>g :call GrepAndRead()<CR>
