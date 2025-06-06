@@ -55,7 +55,7 @@ set tabstop=4
 set softtabstop=4
 set shiftround
 set expandtab
-set mouse=
+set mouse=a
 
 if &t_Co == 256
     try
@@ -63,6 +63,8 @@ if &t_Co == 256
     catch /^Vim\%((\a\+)\)\=:E185/
     endtry
 endif
+
+let mapleader = ","
 
 nnoremap 8 <Esc>:tabe<CR>
 nnoremap 9 gT
@@ -94,7 +96,6 @@ function! DecodeBase64Word()
   call setline(1, split(l:result, "\n"))
 endfunction
 
-nmap <Leader>g :tabnew|read !grep -Hnr '<C-R><C-W>' .<CR>
 nmap <Leader>s :%!sort -u --version-sort<CR>
 
 set wildmenu
@@ -111,8 +112,6 @@ if $VIMENV == 'prev'
   set noswapfile
 endif
 
-set noesckeys
-
 noremap <Home> ^
 noremap <End> $
 inoremap <Home> <C-O>^
@@ -124,3 +123,17 @@ endif
 
 nnoremap <leader>z :term zsh<CR>
 nnoremap <leader>p :Prettier<CR>
+
+function! GrepAndRead()
+    let word = expand("<cword>")
+    let command = "grep -Hnr " . shellescape(word) . " ."
+    let result = system(command)
+    if v:shell_error == 0
+        tabnew
+        put =result
+    else
+        echo "grep failed with error: " . result
+    endif
+endfunction
+
+nmap <Leader>g :call GrepAndRead()<CR>
